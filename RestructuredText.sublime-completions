@@ -3,7 +3,7 @@
 
 	"completions":
 	[
-		{ "trigger": "title", "contents" : "${1}\n${1/./=/g}" },
+		{ "trigger": "title", "contents" : "${1/(.)|\\s/(?1:=:=)/g}\n${1:title name}\n${1/./=/g}" },
 
 		{ "trigger": "e", "contents": "*${1}*" },
 		{ "trigger": "se", "contents": "**${1}**" },
@@ -18,11 +18,17 @@
 		{ "trigger": "source", "contents": "::\n\n    ${1:text}" },
 		{ "trigger": "table", "contents": "${1/./=/g}\n${1:heading}\n${1/./=/g}\n${2:row}\n${3:row}\n${4:row}\n${1/./=/g}" },
 
-		{ "trigger": "link", "contents": "${1:link_variable_name}_.\n\n.. _${1}: ${2:http://}"	 },
-		{ "trigger": "linki", "contents"	: "`${1:link_variable_name} <${2:http://}>`_."	 }
+		{ "trigger": "link", "contents": "${1:link_variable_name}_.\n\n.. _${1}: ${2:http://}" },
+		{ "trigger": "linki", "contents": "`${1:link_variable_name} <${2:http://}>`_." },
 
+		{ "trigger": "sec", "contents": "${1:section name}\n${1/(.)|\\s/(?1:=:=)/g}"},
+		{ "trigger": "ssec", "contents": "${1:section name}\n${1/(.)|\\s/(?1:-:-)/g}"},
+		{ "trigger": "sss", "contents": "${1:section name}\n${1/(.)|\\s/(?1:^:^)/g}"},
 
-
-
+		{ "trigger": "image", "contents": ".. image:: ${1:path}\n   :height: {$2:100px}\n   :width: {$3:100px}\n   :alt: {$4:alt text}\n"},
+		{ "trigger": "label", "contents": ".. _${1:label}:"},
+		{ "trigger": "field", "contents": ":${1:field name}: ${2:value}"},
+		{ "trigger": "dir", "contents": ".. ${1:directive name}:: ${2:value}"},
+		{ "trigger": "toc", "contents": ".. contents:: ${1:Table of Contents}\n   :depth: ${2: 1}\n   :local:\n   :backlinks: ${3:entry|top|none}\n"}
 	]
 }
